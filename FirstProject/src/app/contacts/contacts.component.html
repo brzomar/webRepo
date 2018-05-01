@@ -1,3 +1,47 @@
 <p>
-  contacts works!
 </p>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">User :</div>
+    <div class="panel-body">
+      <form #f="ngForm" (ngSubmit)="onAddUser(f.value)">
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">  
+              <input type="text" class="form-control" ngModel [(ngModel)]="user.name" name="name" placeholder="Nom" required="">
+            </div>
+            <label for="userName" class="col-sm-2 col-form-label">User Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" ngModel [(ngModel)]="user.userName" name="userName" placeholder="User Name">
+            </div>
+            <label for="adress" class="col-sm-2 col-form-label">Adress</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" ngModel [(ngModel)]="user.adress" name="adress" placeholder="Numero, Rue, Ville">
+            </div>
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Ajouter un user</button>
+            </div>
+          </div>
+        </form>
+        <h3>Liste des users</h3>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Adresse</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let u of users; let idx = index">
+                <th scope="row">{{idx+1}}</th>
+                <td>{{u.name}}</td>
+                <td>{{u.userName}}</td>
+                <td>{{u.adress}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
