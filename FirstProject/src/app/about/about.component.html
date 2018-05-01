@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">About </div>
+    <div class="panel-body">
+        <div>
+          <ul>
+            <li>Nom: <strong>{{info.nom}}</strong></li>
+            <li>Prenom: <strong>{{info.prenom}}</strong></li>
+            <li>Email: <strong>{{info.mail}}</strong></li>
+            <li>Tel: <strong>{{info.tel}}</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Commentaires </h3>
+          <input type="text" [(ngModel)]="commentaire1.message" >
+          <button [disabled]="!commentaire1.message" class="btn btn-primary" (click)="onAddCommentaire()">Ajouter un commentaire</button>
+        </div>
+        <form #f="ngForm" (ngSubmit)="onAddCommentaireForForm(f.value)">
+          <div>
+            <input name="message" required="" type="text" ngModel [(ngModel)]="commentaire2.message">
+            <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Ajouter un commentaire</button>
+          </div>
+        </form>
+        <li *ngFor="let c of comments">
+          {{c.message}}
+          <span class="badge">{{c.date|date: 'dd/MM/yyyy:HH:mm:ss'}}</span>
+        </li>
+    </div>
+  </div>
+</div>
