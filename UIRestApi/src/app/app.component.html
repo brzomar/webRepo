@@ -1,0 +1,33 @@
+<p></p>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Image searching</div>
+    <div class="panel-body">
+      <form #f="ngForm"  (ngSubmit)="onSearche(f.value)">
+        <div class="form-group">
+          <label>Key word</label>
+          <input type="text" name="keyWord" ngModel required [(ngModel)]="currentKeyWord">
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let image of imagesPage?.hits" class="col-md-3">
+      <div class="panel panel-primary image-panel">
+        <div class="panel-heading">User : {{image.user}}</div>
+        <div class="panel-body">
+          <img class="img-circle" src="{{image.previewURL}}">
+        </div>
+      </div>
+    </div>      
+  </div>
+  <div class="row">
+    <ul class="nav nav-pills">
+      <li [ngClass]="{ 'active' :currentPage==i+1}" *ngFor="let page of pages; let i=index" class="clickable">
+        <a (click)="goToPage(i)">{{i+1}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
