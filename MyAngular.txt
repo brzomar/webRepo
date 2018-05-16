@@ -1,0 +1,6 @@
+npm install -g @angular/cli
+ng new FirstProject
+ng serve
+ng install 
+npm install bootstrap@3 --save  
+ng g c component

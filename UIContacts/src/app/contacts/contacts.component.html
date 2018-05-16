@@ -1,0 +1,52 @@
+<div class="container spacer">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Contacts</div>
+    <div class="panel-body">
+      <div class="panel panel-primary">
+          <div class="panel-heading">Chercher contacts</div>
+          <div class="panel-body">
+            <form #f="ngForm"  (ngSubmit)="onSearche(f.value)">
+              <div class="form-group">
+                <label>Nom :</label>
+                <input type="text" name="keyWord" ngModel required [(ngModel)]="currentKeyWord">
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Chercher</button>
+              </div>
+            </form>
+          </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Date de naissance</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ct of contactsPage?.content; let idx = index">
+            <th scope="row">{{idx+1}}</th>
+            <td>{{ct.id}}</td>
+            <td>{{ct.nom}}</td>
+            <td>{{ct.prenom}}</td>
+            <td>
+              <span class="badge">{{ct.dateDeNaissance|date: 'dd/MM/yyyy'}}</span>
+            </td>
+            <td>{{ct.email}}</td>
+            <td>{{ct.tel}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <ul class="nav nav-pills">
+          <li [ngClass]="{ 'active' :currentPage==i+1}" *ngFor="let page of pages; let i=index" class="clickable">
+            <a (click)="goToPage(i)">{{i+1}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
