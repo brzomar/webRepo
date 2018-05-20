@@ -8,9 +8,11 @@ import {Routes, RouterModule} from '@angular/router';
 import { NewContactComponent } from './new-contact/new-contact.component';
 import { ContactsService } from '../services/contacts.service';
 import { HttpModule } from '@angular/http';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 const routes:Routes=[
   {path:'contacts',component:ContactsComponent},
   {path:'newContact',component:NewContactComponent},
+  {path:'editContact/:id',component:EditContactComponent},
   {path:'',redirectTo:'contacts',pathMatch:'full'}
 ];
 
@@ -19,7 +21,8 @@ const routes:Routes=[
   declarations: [
     AppComponent,
     ContactsComponent,
-    NewContactComponent
+    NewContactComponent,
+    EditContactComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), HttpModule, FormsModule

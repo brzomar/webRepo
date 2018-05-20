@@ -2,18 +2,12 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Contacts</div>
     <div class="panel-body">
-      <div class="panel panel-primary">
-          <div class="panel-heading">Chercher contacts</div>
-          <div class="panel-body">
-            <form #f="ngForm"  (ngSubmit)="onSearche(f.value)">
-              <div class="form-group">
-                <label>Nom :</label>
-                <input type="text" name="keyWord" ngModel required [(ngModel)]="currentKeyWord">
-                <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Chercher</button>
-              </div>
-            </form>
+      <form class="navbar-form navbar-left" role="search" #f="ngForm"  (ngSubmit)="onSearche(f.value)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nom pour chercher" name="keyWord" ngModel required [(ngModel)]="currentKeyWord">
           </div>
-      </div>
+          <button type="submit" class="btn btn-default" [disabled]="!f.valid">Chercher</button>
+      </form>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -24,6 +18,7 @@
             <th scope="col">Date de naissance</th>
             <th scope="col">Email</th>
             <th scope="col">Tel</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -37,16 +32,18 @@
             </td>
             <td>{{ct.email}}</td>
             <td>{{ct.tel}}</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil clickable" (click)="onEditContact(ct.id)" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-trash clickable" (click)="onDeleteContact(ct)" aria-hidden="true"></span>
+            </td>
           </tr>
         </tbody>
       </table>
-      <div class="row">
-        <ul class="nav nav-pills">
-          <li [ngClass]="{ 'active' :currentPage==i+1}" *ngFor="let page of pages; let i=index" class="clickable">
-            <a (click)="goToPage(i)">{{i+1}}</a>
-          </li>
-        </ul>
-      </div>
+      <ul class="pagination">
+        <li [ngClass]="{ 'active' :currentPage==i}" *ngFor="let page of pages; let i=index" class="clickable">
+          <a (click)="goToPage(i)">{{i+1}}</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

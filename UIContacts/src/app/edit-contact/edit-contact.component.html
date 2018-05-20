@@ -1,0 +1,61 @@
+<div class="container spacer">
+    <div class="panel panel-primary" *ngIf="editMode">
+      <div class="panel-heading">Nouveau contact :</div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onUpdateContact(f.value)">
+          <div class="form-group">
+            <label class="control-label">Nom :</label>
+            <input class="form-control" type="text" ngModel name="nom" [(ngModel)]="contact.nom" placeholder="Nom" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Prénom :</label>
+            <input class="form-control" type="text" ngModel name="prenom" [(ngModel)]="contact.prenom" placeholder="Prénom" required>
+          </div>
+          <div class="form-group">
+              <label class="control-label">Date de naissance :</label>
+              <input class="form-control" type="date" ngModel [(ngModel)]="contact.dateDeNaissance" name="dateDeNaissance" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email :</label>
+            <input class="form-control" type="email" ngModel [(ngModel)]="contact.email" name="email" placeholder="Email" required email>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Tel :</label>
+            <input class="form-control" type="text" ngModel [(ngModel)]="contact.tel" name="tel" placeholder="0" required>
+          </div>
+          <button type="submit" [disabled]="!f.valid" class="btn btn-primary">save</button>
+          <button type="reset" class="btn btn-primary" (click)="onCancel()">annuler</button>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-primary" *ngIf="!editMode">
+        <div class="panel-heading">Modification confirmée :</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label">Id :</label>
+                <label>{{contact.id}}</label>
+            </div>
+          <div class="form-group">
+            <label class="control-label">Nom :</label>
+            <label>{{contact.nom}}</label>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Prénom :</label>
+            <label>{{contact.prenom}}</label>
+          </div>
+          <div class="form-group">
+              <label class="control-label">Date de naissance :</label>
+              <label>{{contact.dateDeNaissance}}</label>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email :</label>
+            <label>{{contact.email}}</label>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Tel :</label>
+            <label>{{contact.tel}}</label>
+          </div>
+          <button class="btn btn-primary" (click)="onConfirmationEdit()">OK</button>
+        </div>
+      </div>
+  </div>
