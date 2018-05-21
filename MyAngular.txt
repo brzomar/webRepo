@@ -4,3 +4,6 @@ ng serve
 ng install 
 npm install bootstrap@3 --save  
 ng g c component
+
+sudo npm install -g angular-cli-ghpages --save
+ng build --prod --base-href "https://brzomar.github.io/webRepo/UIContact/"
